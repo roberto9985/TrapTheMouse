@@ -2,6 +2,8 @@
 import pygame
 from entities.constants import WIDTH, HEIGHT, SQUARE_SIZE, DARK_GREEN, GREY, BROWN
 from entities.game import Game
+from ai.minmax import minimax
+
 
 FPS = 60
 
@@ -18,10 +20,15 @@ def main():
     run = True
     clock = pygame.time.Clock()
     game = Game(WIN)
-
     while run:
         clock.tick(FPS)
-            
+        
+
+        if game.turn == GREY:
+            value, new_board = minimax(game.get_board(), 2, True)
+            game.ai_move(new_board)
+             
+             
         if game.winner() != "False":
             print(game.winner())
             run = False
