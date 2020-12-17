@@ -14,11 +14,7 @@ class Board:
     def draw_squares(self, win):
         win.fill(GREEN)
         for row in range(ROWS):
-            for col in range(row % 2, COLS, 2):
-                # pygame.draw.rect(win, DARK_GREEN, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
-                win.blit(SQUARE, (row*SQUARE_SIZE, col*SQUARE_SIZE))
-            for col in range(row % 2 == 0 , COLS, 2):
-                # pygame.draw.rect(win, DARK_GREEN, (row*SQUARE_SIZE, col*SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            for col in range(COLS):
                 win.blit(SQUARE, (row*SQUARE_SIZE, col*SQUARE_SIZE))
 
     def create_board(self):
@@ -37,11 +33,9 @@ class Board:
             if self.board[find][COLS//2] == 0:
                 self.board[find][COLS//2] = Mouse(find, COLS//2, GREY)
                 self.mouseX,self.mouseY = find,COLS//2
-            
                 break
             else:
                 find += 1           
-
 
 
     def draw(self, win):
@@ -56,21 +50,18 @@ class Board:
     def add(self, row, col):
         self.board[row][col] = Piece(row, col, BROWN)
 
-    def add_mouse(self,row,col):
-        self.board[row][col] = Mouse(row, col, GREY)
-
     def move(self, row, col):
             self.board[self.mouseX][self.mouseY] = 0
             self.board[row][col] = Mouse(row, col, GREY)
-            self.mouseX,self.mouseY = row,col
+            self.mouseX,self.mouseY = row, col
             
     def get_piece(self, row, col):
         return self.board[row][col]
 
     
     def winner(self):
-        if self.mouseX in [0,ROWS - 1] or self.mouseY in [0,COLS - 1]:
-            return "Mouse"
+        if self.mouseX in [0, ROWS - 1] or self.mouseY in [0, COLS - 1]:
+            return "Mouse escaped"
         for x in [-1,0,1]:
             for y in [-1,0,1]:
                 if(self.board[self.mouseX + x][self.mouseY + y]) == 0:

@@ -12,7 +12,6 @@ def heuristicFunction(copyTable):
         if copyTable.board[up][curr_y] == 0:
                 count_up += 1
         else:
-            # count_up = 0
             count_up = float('inf')
             break
     min_list.append(count_up)
@@ -21,7 +20,6 @@ def heuristicFunction(copyTable):
         if copyTable.board[down][curr_y] == 0:
                 count_down += 1
         else:
-            # count_down = 0 
             count_down = float('inf')
             break
     min_list.append(count_down)
@@ -30,7 +28,6 @@ def heuristicFunction(copyTable):
         if copyTable.board[curr_y][left] == 0:
                 count_left += 1
         else:
-            # count_left = 0
             count_left = float('inf')
             break
     min_list.append(count_left)
@@ -39,7 +36,6 @@ def heuristicFunction(copyTable):
         if copyTable.board[curr_x][right] == 0:
                 count_right += 1
         else:
-            # count_right = 0 
             count_right = float('inf')
             break
     min_list.append(count_right)
@@ -48,7 +44,6 @@ def heuristicFunction(copyTable):
         if copyTable.board[curr_x - up_left][curr_y - up_left] == 0:
                 count_up_left += 1
         else:
-            # count_up_left = 0 
             count_up_left = float('inf')
             break
         if (curr_x - up_left) == 0 or (curr_y - up_left) == 0:
@@ -62,7 +57,6 @@ def heuristicFunction(copyTable):
         if copyTable.board[curr_x - up_right][curr_y + up_right] == 0:
                 count_up_right += 1
         else:
-            # count_up_right = 0
             count_up_right = float('inf')
             break
     min_list.append(count_up_right)
@@ -74,7 +68,6 @@ def heuristicFunction(copyTable):
         if copyTable.board[curr_x + down_left][curr_y - down_left] == 0:
                 count_down_left += 1
         else:
-            # count_down_left = 0
             count_down_left = float('inf')
             break
     min_list.append(count_down_left)
@@ -86,11 +79,9 @@ def heuristicFunction(copyTable):
         if copyTable.board[curr_x + down_right][curr_y + down_right] == 0:
                 count_down_right += 1
         else:
-            # count_down_right = 0
             count_down_right = float('inf')
             break
     min_list.append(count_down_right)
-    # sum_available = count_up + count_down + count_left + count_right + count_up_left + count_up_right + count_down_left + count_down_right
     return min(min_list)
     
 
@@ -99,27 +90,15 @@ def ai_move(tableTest, depth, max_turn):
         return heuristicFunction(tableTest),tableTest
     
     if max_turn:
-        maxEval = float('inf')
+        minEval = float('inf')
         best_move = None
         
         for move in get_available_moves(tableTest, GREY): 
             evaluation = ai_move(move, depth-1, True)[0]
-            maxEval = min(maxEval, evaluation)
-            if maxEval == evaluation:
+            minEval = min(minEval, evaluation)
+            if minEval == evaluation:
                 best_move = move 
-        return (maxEval, best_move)
-    
-    # else:
-    #     minEval = float('inf')
-    #     best_move = None
-        
-    #     for move in get_available_moves(tableTest, BROWN): 
-    #         evaluation = minimax(move, depth-1, True)[0]
-    #         minEval = min(minEval, evaluation)
-    #         if minEval == evaluation:
-    #             best_move = move
-    #     return (minEval, best_move)
-
+        return (minEval, best_move)
 
 def get_available_moves(Board, color):
     moves = []

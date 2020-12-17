@@ -2,9 +2,7 @@ from .constants import DARK_GREEN, WHITE, SQUARE_SIZE, GREY, MOUSE
 import pygame
 
 class Mouse:
-    PADDING = 15
-    OUTLINE = 2
-
+    
     def __init__(self, row, col, color):
         self.row = row
         self.col = col
@@ -18,9 +16,6 @@ class Mouse:
         self.y = SQUARE_SIZE * self.row + SQUARE_SIZE // 2
    
     def draw(self, win):
-        # radius = SQUARE_SIZE//2 - self.PADDING
-        # pygame.draw.circle(win, GREY, (self.x, self.y), radius + self.OUTLINE)
-        # pygame.draw.circle(win, self.color, (self.x, self.y), radius)
         win.blit(MOUSE, (self.x - 25,  self.y - 50))
 
 

@@ -21,7 +21,7 @@ class Game:
             if piece == 0 and self.turn == BROWN:        
                 self._add(row, col)
             elif piece == 0 and self.turn == GREY:
-                if (self.board.mouseX - row) in [-1,0,1] and (self.board.mouseY - col) in [-1,0,1]:
+                if (self.board.mouseX - row) in [-1, 0, 1] and (self.board.mouseY - col) in [-1, 0, 1]:
                     self._move(row, col) 
 
 

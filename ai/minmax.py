@@ -13,47 +13,37 @@ def heuristicFunction(copyTable):
                 count_up += 1
         else:
             count_up = 0
-            # float('inf')
             break
-    # min_list.append(count_up)
     
     for down in range(curr_x + 1, ROWS):
         if copyTable.board[down][curr_y] == 0:
                 count_down += 1
         else:
             count_down = 0 
-            # float('inf')
             break
-    # min_list.append(count_down)
 
     for left in range(curr_y):
         if copyTable.board[curr_y][left] == 0:
                 count_left += 1
         else:
             count_left = 0
-            # float('inf')
             break
-    # min_list.append(count_left)
 
     for right in range(curr_y + 1, COLS):
         if copyTable.board[curr_x][right] == 0:
                 count_right += 1
         else:
             count_right = 0 
-            # float('inf')
             break
-    # min_list.append(count_right)
     
     for up_left in range(1, ROWS):
         if copyTable.board[curr_x - up_left][curr_y - up_left] == 0:
                 count_up_left += 1
         else:
             count_up_left = 0 
-            # float('inf')
             break
         if (curr_x - up_left) == 0 or (curr_y - up_left) == 0:
             break
-    # min_list.append(count_up_left)
 
     for up_right in range(1, ROWS):
         if (curr_x - up_right ) == 0 or (curr_y + up_right) == COLS:
@@ -63,9 +53,7 @@ def heuristicFunction(copyTable):
                 count_up_right += 1
         else:
             count_up_right = 0
-            # float('inf')
             break
-    # min_list.append(count_up_right)
 
     for down_left in range(1, ROWS):
         if (down_left + curr_x) == ROWS or (curr_y - down_left) == 0:
@@ -75,9 +63,7 @@ def heuristicFunction(copyTable):
                 count_down_left += 1
         else:
             count_down_left = 0
-            # float('inf')
             break
-    # min_list.append(count_down_left)
 
     for down_right in range(1, ROWS):
         if (down_right + curr_x) == ROWS or (down_right + curr_y) == COLS:
@@ -87,9 +73,7 @@ def heuristicFunction(copyTable):
                 count_down_right += 1
         else:
             count_down_right = 0
-            # float('inf')
             break
-    # min_list.append(count_down_right)
     sum_available = count_up + count_down + count_left + count_right + count_up_left + count_up_right + count_down_left + count_down_right
     return sum_available
     
