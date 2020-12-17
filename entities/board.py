@@ -15,7 +15,10 @@ class Board:
         win.fill(GREEN)
         for row in range(ROWS):
             for col in range(COLS):
-                win.blit(SQUARE, (row*SQUARE_SIZE, col*SQUARE_SIZE))
+                if col % 2 == 0:
+                    win.blit(SQUARE, (row*SQUARE_SIZE, col*SQUARE_SIZE))
+                else:
+                    win.blit(SQUARE, (row*SQUARE_SIZE + 33, col*SQUARE_SIZE))
 
     def create_board(self):
         numberList = range(6,11)

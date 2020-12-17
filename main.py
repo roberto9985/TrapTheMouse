@@ -17,7 +17,13 @@ myfont = pygame.font.SysFont('Comic Sans MS', 30)
 def get_row_col_from_mouse(pos):
     x, y = pos
     row = y // SQUARE_SIZE
-    col = x // SQUARE_SIZE
+    if row % 2 == 1:
+        col = (x + 35) // SQUARE_SIZE
+        col = col - 1
+    else:
+        col = x // SQUARE_SIZE
+    
+    # print(x, y)
     return row, col
 
 def main():
@@ -28,7 +34,8 @@ def main():
     # 1 - easy
     # 2 - medium
     # 3 - hard
-    inputLevel = int(input("Select the difficulty:"))
+    # inputLevel = int(input("Select the difficulty:"))
+    inputLevel = 1
     while run:
         clock.tick(FPS)
         

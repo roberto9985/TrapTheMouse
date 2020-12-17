@@ -12,8 +12,13 @@ class Mouse:
         self.calc_pos()
 
     def calc_pos(self):
-        self.x = SQUARE_SIZE * self.col + SQUARE_SIZE // 2
-        self.y = SQUARE_SIZE * self.row + SQUARE_SIZE // 2
+        if self.row % 2 == 0:
+            self.x = SQUARE_SIZE * self.col + SQUARE_SIZE // 2
+            self.y = SQUARE_SIZE * self.row + SQUARE_SIZE // 2 + 10
+        else:
+            self.x = SQUARE_SIZE * self.col + SQUARE_SIZE // 2 + 35
+            self.y = SQUARE_SIZE * self.row + SQUARE_SIZE // 2 + 10
+
    
     def draw(self, win):
         win.blit(MOUSE, (self.x - 25,  self.y - 50))
@@ -23,6 +28,3 @@ class Mouse:
         self.row = row
         self.col = col
         self.calc_pos()
-
-    def __repr__(self):
-        return str(self.color)

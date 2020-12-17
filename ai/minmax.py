@@ -74,6 +74,7 @@ def heuristicFunction(copyTable):
         else:
             count_down_right = 0
             break
+    
     sum_available = count_up + count_down + count_left + count_right + count_up_left + count_up_right + count_down_left + count_down_right
     return sum_available
     
@@ -108,12 +109,32 @@ def minimax(tableTest, depth, max_turn):
 def get_available_moves(Board, color):
     moves = []
     if color == GREY:
-        for x in [-1,0,1]:
-                for y in [-1,0,1]:
-                    if(Board.board[Board.mouseX + x][Board.mouseY + y]) == 0:
+        if Board.mouseX % 2 == 0:
+            for x in [-1, 0, 1]:
+                for y in [-1, 0]:
+                    if Board.board[Board.mouseX + x][Board.mouseY + y] == 0:
                         aux_board = deepcopy(Board)
                         aux_board.move((Board.mouseX + x) , (Board.mouseY + y))
                         moves.append(aux_board)
+            # Special case
+            if Board.board[Board.mouseX][Board.mouseY + 1] == 0:
+                aux_board = deepcopy(Board)
+                aux_board.move((Board.mouseX) , (Board.mouseY + 1))
+                moves.append(aux_board)
+
+        elif Board.mouseX % 2 == 1:
+            for x in [-1, 0, 1]:
+                for y in [0, 1]:
+                    if Board.board[Board.mouseX + x][Board.mouseY + y] == 0:
+                        aux_board = deepcopy(Board)
+                        aux_board.move((Board.mouseX + x) , (Board.mouseY + y))
+                        moves.append(aux_board)
+            # Special case
+            if Board.board[Board.mouseX][Board.mouseY - 1] == 0:
+                aux_board = deepcopy(Board)
+                aux_board.move((Board.mouseX) , (Board.mouseY - 1))
+                moves.append(aux_board)
+
     else:
         for row in range(ROWS):
             for col in range(COLS):
