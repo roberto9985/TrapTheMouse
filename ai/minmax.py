@@ -7,20 +7,6 @@ def heuristicFunction(copyTable):
     curr_y = copyTable.mouseY
     min_list = []
     count_up, count_down, count_left, count_right, count_up_left, count_up_right, count_down_left, count_down_right = 0,0,0,0,0,0,0,0
-    
-    for up in range(curr_x):
-        if copyTable.board[up][curr_y] == 0:
-                count_up += 1
-        else:
-            count_up = 0
-            break
-    
-    for down in range(curr_x + 1, ROWS):
-        if copyTable.board[down][curr_y] == 0:
-                count_down += 1
-        else:
-            count_down = 0 
-            break
 
     for left in range(curr_y):
         if copyTable.board[curr_y][left] == 0:
@@ -36,46 +22,100 @@ def heuristicFunction(copyTable):
             count_right = 0 
             break
     
-    for up_left in range(1, ROWS):
-        if copyTable.board[curr_x - up_left][curr_y - up_left] == 0:
-                count_up_left += 1
-        else:
-            count_up_left = 0 
-            break
-        if (curr_x - up_left) == 0 or (curr_y - up_left) == 0:
-            break
-
-    for up_right in range(1, ROWS):
-        if (curr_x - up_right ) == 0 or (curr_y + up_right) == COLS:
-            break
-
-        if copyTable.board[curr_x - up_right][curr_y + up_right] == 0:
-                count_up_right += 1
-        else:
-            count_up_right = 0
-            break
-
-    for down_left in range(1, ROWS):
-        if (down_left + curr_x) == ROWS or (curr_y - down_left) == 0:
-            break
-
-        if copyTable.board[curr_x + down_left][curr_y - down_left] == 0:
-                count_down_left += 1
-        else:
-            count_down_left = 0
-            break
-
-    for down_right in range(1, ROWS):
-        if (down_right + curr_x) == ROWS or (down_right + curr_y) == COLS:
-            break
-        
-        if copyTable.board[curr_x + down_right][curr_y + down_right] == 0:
-                count_down_right += 1
-        else:
-            count_down_right = 0
-            break
     
-    sum_available = count_up + count_down + count_left + count_right + count_up_left + count_up_right + count_down_left + count_down_right
+    if curr_x % 2 == 0:
+        for up_left in range(1, ROWS):
+            if copyTable.board[curr_x - up_left][curr_y - up_left] == 0:
+                    count_up_left += 1
+            else:
+                count_up_left = 0 
+                break
+            if (curr_x - up_left) == 0 or (curr_y - up_left) == 0:
+                break
+
+        for up_right in range(1, ROWS):
+            if (curr_x - up_right ) == 0 or (curr_y + up_right) == COLS:
+                break
+
+            if copyTable.board[curr_x - up_right][curr_y + up_right] == 0:
+                    count_up_right += 1
+            else:
+                count_up_right = 0
+                break
+        
+        down_left_j = 0
+        for down_left in range(1, ROWS):
+            if down_left % 2 == 1:
+                down_left_j += 1
+            if (down_left + curr_x) == ROWS or (curr_y - down_left_j) == 0:
+                break
+
+            if copyTable.board[curr_x + down_left][curr_y - down_left_j] == 0:
+                    count_down_left += 1
+            else:
+                count_down_left = 0
+                break
+
+        down_right_j = 0
+        for down_right in range(1, ROWS):
+            if down_right_j % 2 == 0:
+                down_right_j += 1
+            if (down_right + curr_x) == ROWS or (down_right_j + curr_y) == COLS:
+                break
+            
+            if copyTable.board[curr_x + down_right][curr_y + down_right_j] == 0:
+                    count_down_right += 1
+            else:
+                count_down_right = 0
+                break
+    
+    else:       
+        for up_left in range(1, ROWS):
+            if copyTable.board[curr_x - up_left][curr_y - up_left] == 0:
+                    count_up_left += 1
+            else:
+                count_up_left = 0 
+                break
+            if (curr_x - up_left) == 0 or (curr_y - up_left) == 0:
+                break
+
+        for up_right in range(1, ROWS):
+            if (curr_x - up_right ) == 0 or (curr_y + up_right) == COLS:
+                break
+
+            if copyTable.board[curr_x - up_right][curr_y + up_right] == 0:
+                    count_up_right += 1
+            else:
+                count_up_right = 0
+                break
+        
+        down_left_j = 0
+        for down_left in range(1, ROWS):
+            if down_left % 2 == 0:
+                down_left_j += 1
+            if (down_left + curr_x) == ROWS or (curr_y - down_left_j) == 0:
+                break
+
+            if copyTable.board[curr_x + down_left][curr_y - down_left_j] == 0:
+                    count_down_left += 1
+            else:
+                count_down_left = 0
+                break
+
+        down_right_j = 0
+        for down_right in range(1, ROWS):
+            if down_right_j % 2 == 1:
+                down_right_j += 1
+            if (down_right + curr_x) == ROWS or (down_right_j + curr_y) == COLS:
+                break
+            
+            if copyTable.board[curr_x + down_right][curr_y + down_right_j] == 0:
+                    count_down_right += 1
+            else:
+                count_down_right = 0
+                break
+
+    sum_available = count_left + count_right + count_up_left + count_up_right + count_down_left + count_down_right
     return sum_available
     
 
