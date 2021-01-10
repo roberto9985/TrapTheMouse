@@ -42,7 +42,7 @@ def main():
         if inputLevel in range(1,4):
             if game.turn == GREY:
                 if inputLevel == 1:
-                    value, new_board = minimax(game.get_board(), 2, True)
+                    value, new_board = minimax(game.get_board(), 1, True)
                 if inputLevel == 2:
                     value, new_board = minimaxAlpha_Beta(game.get_board(), 3, float('-inf'),float('inf'), True)
                 if inputLevel == 3:

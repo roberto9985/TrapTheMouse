@@ -16,8 +16,8 @@ class Game:
         self.board = Board()
 
     def select(self, row, col):
-        print(row,col)
-        print(self.board.mouseX,self.board.mouseY)
+        # print(row,col)
+        # print(self.board.mouseX,self.board.mouseY)
         piece = self.board.get_piece(row, col)
         if row in range(ROWS) and col in range(COLS):  
             if piece == 0 and self.turn == BROWN:        
