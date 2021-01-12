@@ -35,18 +35,18 @@ def main():
     # 2 - medium
     # 3 - hard
     # inputLevel = int(input("Select the difficulty:"))
-    inputLevel = 1
+    inputLevel = 3
     while run:
         clock.tick(FPS)
         
         if inputLevel in range(1,4):
             if game.turn == GREY:
                 if inputLevel == 1:
-                    value, new_board = minimax(game.get_board(), 1, True)
+                    value, new_board = minimax(game.get_board(), 2, True)
                 if inputLevel == 2:
                     value, new_board = minimaxAlpha_Beta(game.get_board(), 3, float('-inf'),float('inf'), True)
                 if inputLevel == 3:
-                    value, new_board = ai_move(game.get_board(), 3, True)
+                    value, new_board = ai_move(game.get_board(), 5, True)
                 game.ai_move(new_board)
 
         if game.winner() != "False":

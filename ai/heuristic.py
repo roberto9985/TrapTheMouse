@@ -5,20 +5,23 @@ def heuristicFunction(copyTable):
     curr_x = copyTable.mouseX
     curr_y = copyTable.mouseY
     count_left, count_right, count_up_left, count_up_right, count_down_left, count_down_right = 0, 0, 0, 0, 0, 0
+    min_list = []
 
     for left in range(curr_y):
         if copyTable.board[curr_y][left] == 0:
             count_left += 1
         else:
-            count_left = 0
+            count_left = float('inf')
             break
+    min_list.append(count_left)
 
     for right in range(curr_y + 1, COLS):
         if copyTable.board[curr_x][right] == 0:
             count_right += 1
         else:
-            count_right = 0
+            count_right = float('inf')
             break
+    min_list.append(count_right)
 
     if curr_x % 2 == 0:
         up_left_j = 0
