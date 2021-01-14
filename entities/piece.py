@@ -22,7 +22,7 @@ class Piece:
 
             This function is used to calculate and update the new position x, y on the game interface,
              based on the row and column values, when calling the function. The positions differ depending,
-              on the line because the board is in honeycomb format.
+              on the row because the board is in honeycomb format.
 
         """
         if self.row % 2 == 0:

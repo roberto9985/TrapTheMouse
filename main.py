@@ -1,5 +1,5 @@
 import pygame
-from entities.constants import WIDTH, HEIGHT, SQUARE_SIZE, GREY, GREEN, FONT
+from entities.constants import WIDTH, HEIGHT, SQUARE_SIZE, GREY, GREEN, FONT, COLS, ROWS
 from entities.game import Game
 from ai.minmax import minimax
 from ai.minmax_alpha_beta import minimax_alpha_beta
@@ -59,7 +59,8 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
                 row, col = get_row_col_from_mouse(pos)
-                game.select(row, col)
+                if col in range(COLS) and row in range(ROWS):
+                    game.select(row, col)
         game.update()
 
 

@@ -104,8 +104,20 @@ class Board:
         """
         if self.mouse_row in [0, ROWS - 1] or self.mouse_col in [0, COLS - 1]:
             return "Mouse escaped"
-        for x in [-1, 0, 1]:
-            for y in [-1, 0, 1]:
-                if (self.board[self.mouse_row + x][self.mouse_col + y]) == 0:
-                    return "False"
+        if self.mouse_row % 2 == 0:
+            for x in [-1, 0, 1]:
+                for y in [-1, 0]:
+                    if (self.board[self.mouse_row + x][self.mouse_col + y]) == 0:
+                        return "False"
+                    # Special Case
+                    elif self.board[self.mouse_row][self.mouse_col + 1] == 0:
+                        return "False"
+        elif self.mouse_row % 2 == 1:
+            for x in [-1, 0, 1]:
+                for y in [0, 1]:
+                    if self.board[self.mouse_row + x][self.mouse_col + y] == 0:
+                        return "False"
+                    # Special Case
+                    elif self.board[self.mouse_row][self.mouse_col - 1] == 0:
+                        return "False"
         return "Mouse was caught"
