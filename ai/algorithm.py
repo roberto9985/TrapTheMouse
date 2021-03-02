@@ -1,5 +1,6 @@
 from entities.constants import GREY, ROWS, COLS
 from .heuristic import get_available_moves
+import random
 
 
 def heuristic_function(test_table):
@@ -138,7 +139,7 @@ def heuristic_function(test_table):
                 count_down_right = float('inf')
                 break
         min_list.append(count_down_right)
-
+        random.shuffle(min_list)
     return min(min_list)
 
 
